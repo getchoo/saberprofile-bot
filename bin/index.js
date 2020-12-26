@@ -5,7 +5,6 @@ const Eris = require('eris')
 const saberprofile = require('../lib/saberprofile')
 
 // setup text colors for different statuses
-
 const ok = chalk.bold.cyan
 
 const bad = chalk.bold.red
@@ -13,13 +12,13 @@ const bad = chalk.bold.red
 const link = chalk.underline.green
 
 // get discord bot token from environmental variable
-
 const token = process.env.DISCORD_TOKEN
 
 if (token == null) {
   console.log(bad('no discord token found as an environmental variable. please set it as DISCORD_TOKEN.'))
 }
 
+// init bot
 const bot = new Eris.CommandClient(token, {}, {
   name: 'saberprofile-bot',
   description: 'a bot for getting stats from saberscore',
@@ -31,6 +30,7 @@ bot.on('ready', async () => {
   console.log(ok('connected to discord!'))
 })
 
+// !saberprofile command
 bot.registerCommand('saberprofile', async function (msg, args) {
   console.log('got a profileCard request from ' + link(msg.author.username))
 
@@ -40,10 +40,18 @@ bot.registerCommand('saberprofile', async function (msg, args) {
     return 'you need to enter a saberscore id.'
   }
 
-  const profile = saberprofile.profileCard(text)
-
-  return profile
+  const response = await saberprofile.profileCard(text)
+  if (typeof(response) === 'string') {
+    console.log(bad('profileCard was unable to find a user with the ID ' + text))
+    return 'unable to find user.'
+  }
+  const profile = await response.buffer()
+  console.log(ok('profileCard downloaded!'))
+  
+  bot.createMessage(msg.channel.id, 'here you go!', { file: profile, name: text + '.png' })
+  return
 }, {
+  // help section for command
   aliases: ['saberProfile', 'Saberprofile', 'SaberProfile', 'scoresaber', 'Scoresaber', 'ScoreSaber', 'card'],
   description: 'gets your scoresaber card',
   fullDescription: 'use this command to get a profile card of your beatsaber stats from scoresaber',
@@ -51,6 +59,7 @@ bot.registerCommand('saberprofile', async function (msg, args) {
   invalidUsageMessage: 'syntax error! please enter the command followed by the beatsaber id.'
 })
 
+// !stop command
 bot.registerCommand('stop', (msg, args) => {
   console.log('got a disconnect request from ' + link(msg.author.username))
 
@@ -61,6 +70,7 @@ bot.registerCommand('stop', (msg, args) => {
     bot.disconnect()
   }
 }, {
+  // check to see if the command is coming from me (or you if you want to change the user ID!)
   requirements: {
     userIDs: ['746501080409702461']
   },
@@ -68,4 +78,5 @@ bot.registerCommand('stop', (msg, args) => {
   permissionMessage: 'you dont own me! dont try to turn me off.'
 })
 
+// connect the bot
 bot.connect()
