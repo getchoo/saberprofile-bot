@@ -1,0 +1,33 @@
+{
+  "name": "saberprofile-bot",
+  "version": "0.1.0",
+  "description": "a discord bot for getting stats from scoresaber",
+  "main": "bin/index.js",
+  "scripts": {
+    "test": "node ./bin/index.js"
+  },
+  "keywords": [
+    "api",
+    "discord",
+    "discord-app",
+    "eris",
+    "wrapper",
+    "beatsaber",
+    "beat-saber"
+  ],
+  "author": "getchoo",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "eris": "^0.14.0",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1"
+  }
+}
