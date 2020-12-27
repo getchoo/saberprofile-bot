@@ -68,6 +68,7 @@ bot.registerCommand('stop', (msg, args) => {
   if (args === 'reconnect') {
     bot.disconnect({ reconnect: true })
   } else {
+    bot.createMessage(msg.channel.id, 'goodbye!')
     console.log(bad('disconnecting...'))
     bot.disconnect()
   }
