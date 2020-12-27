@@ -19,9 +19,9 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "axios": "^0.21.1",
     "chalk": "^4.1.0",
-    "eris": "^0.14.0",
-    "node-fetch": "^2.6.1"
+    "eris": "^0.14.0"
   },
   "devDependencies": {
     "eslint": "^7.12.1",

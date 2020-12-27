@@ -41,11 +41,13 @@ bot.registerCommand('saberprofile', async function (msg, args) {
   }
 
   const response = await saberprofile.profileCard(text)
+  
   if (typeof(response) === 'string') {
     console.log(bad('profileCard was unable to find a user with the ID ' + text))
     return 'unable to find user.'
   }
-  const profile = await response.buffer()
+
+  const profile = Buffer.from(response.data)
   console.log(ok('profileCard downloaded!'))
   
   bot.createMessage(msg.channel.id, 'here you go!', { file: profile, name: text + '.png' })
