@@ -1,6 +1,6 @@
 {
   "name": "saberprofile-bot",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "a discord bot for getting stats from scoresaber",
   "main": "bin/index.js",
   "scripts": {
