@@ -2,6 +2,8 @@
   "name": "saberprofile-bot",
   "version": "0.2.1",
   "description": "a discord bot for getting stats from scoresaber",
+  "author": "Seth Flynn <sethaflynn@gmail.com>",
+  "license": "MIT",
   "main": "bin/index.js",
   "scripts": {
     "test": "node ./bin/index.js"
@@ -15,9 +17,6 @@
     "beatsaber",
     "beat-saber"
   ],
-  "author": "getchoo",
-  "license": "MIT",
-  "private": false,
   "dependencies": {
     "axios": "^0.21.1",
     "chalk": "^4.1.0",
@@ -29,5 +28,19 @@
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getchoo/saberprofile-bot.git"
+  },
+  "homepage": "https://github.com/getchoo/saberprofile-bot",
+  "bugs": {
+    "url": "https://github.com/getchoo/node-redcord/issues"
+  },
+  "bin": {
+    "saberprofile-bot": "index.js"
+  },
+  "directories": {
+    "lib": "lib"
   }
 }
